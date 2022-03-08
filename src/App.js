@@ -1,7 +1,15 @@
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import logo from './logo.svg';
 import './App.css';
+import { fetchCovidStats } from './store/covidStats';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCovidStats({ date: '2022-03-05' }));
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
