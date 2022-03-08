@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { fetchCovidStats } from '../store/covidStats';
+import Country from './Country';
 
 const CountriesList = () => {
   const dispatch = useDispatch();
   const { casesByCountry, totalCases } = useSelector((state) => state);
   useEffect(async () => {
-    dispatch(fetchCovidStats({ date: '2022-03-05' }));
+    if (Object.keys(casesByCountry).length === 0) dispatch(fetchCovidStats({ date: '2022-03-05' }));
   }, []);
   return (
     <div>
@@ -24,9 +26,9 @@ const CountriesList = () => {
         {
           Object.keys(casesByCountry).map(
             (country) => (
-              <li key={country}>
-                {country}
-              </li>
+              <Link key={country} to={country}>
+                <Country country={casesByCountry[country]} />
+              </Link>
             ),
           )
         }
