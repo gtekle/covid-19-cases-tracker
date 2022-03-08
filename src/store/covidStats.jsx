@@ -6,18 +6,32 @@ export const fetchCovidStats = createAsyncThunk(
   async (param, thunkApi) => {
     const { dispatch } = thunkApi;
     const { data } = await axios.get(`https://api.covid19tracking.narrativa.com/api/${param.date}`);
-    console.log(data);
-    console.log(dispatch);
-    console.log('date param: ', param.date);
+    const casesByCountry = data.dates['2022-03-05'].countries;
+    const totalCases = data.total;
+    dispatch({
+      type: 'covidStats/statsFetched',
+      payload: {
+        casesByCountry,
+        totalCases,
+      },
+    });
   },
 );
 
+const initialState = {
+  casesByCountry: {},
+  totalCases: {},
+};
+
 const slice = createSlice({
   name: 'covidStats',
-  initialState: { casesByCountry: {}, totalCases: {} },
+  initialState,
   reducers: {
+    /* eslint-disable no-param-reassign */
     statsFetched: (state, action) => {
-      console.log('statsFetched', state, action);
+      state.casesByCountry = action.payload.casesByCountry;
+      state.totalCases = action.payload.totalCases;
+      console.log(state, action);
     },
   },
 });
