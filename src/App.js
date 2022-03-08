@@ -8,7 +8,7 @@ import { fetchCovidStats } from './store/covidStats';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCovidStats());
+    dispatch(fetchCovidStats({ date: '2022-03-05' }));
   }, []);
   return (
     <div className="App">

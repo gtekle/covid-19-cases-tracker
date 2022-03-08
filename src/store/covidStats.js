@@ -3,23 +3,12 @@ import axios from 'axios';
 
 export const fetchCovidStats = createAsyncThunk(
   'covidStats/fetchStats',
-  async (date = '2022-03-06', thunkApi) => {
+  async (param, thunkApi) => {
     const { dispatch } = thunkApi;
-    const { data } = await axios.get(`https://api.covid19tracking.narrativa.com/api/${date}`);
+    const { data } = await axios.get(`https://api.covid19tracking.narrativa.com/api/${param.date}`);
     console.log(data);
     console.log(dispatch);
-    // const rockets = data.map((rocket) => (
-    //   {
-    //     id: rocket.id,
-    //     rocketName: rocket.rocket_name,
-    //     description: rocket.description,
-    //     rocketImage: rocket.flickr_images[0],
-    //   }
-    // ));
-    // dispatch({
-    //   type: rocketsFetched.type,
-    //   payload: rockets,
-    // });
+    console.log('date param: ', param.date);
   },
 );
 
