@@ -1,39 +1,75 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.countries_list_header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #4369b2;
+  padding: 0 0.5rem;
+  color: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+.countries_list_header_back {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.countries_list_header_back span {
+  line-height: 1.5;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.countries_list_hero {
+  background-color: #5687e4;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  padding: 0.3rem;
+}
+
+.countries_list_hero h1 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin: 0;
+}
+
+.all_stats_divider,
+.stats_by_country_divider {
+  color: #fff;
+  background-color: #35548b;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.1em;
+}
+
+.all_stats_detail {
+  background-color: #4369b2;
+  color: #fff;
+  border: 1px solid #4369b2;
+}
+
+.countries_list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.countries_list li {
+  padding: 0.5em;
+}
+
+.countries_list a {
+  text-decoration: none;
+  width: 50%;
+  min-height: 8rem;
+  font-size: 1.5em;
+  color: #fff;
+}
+
+.default_color {
+  background-color: #4167b0;
+}
+
+.other_color {
+  background-color: #3d60a2;
 }
