@@ -1,36 +1,49 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 
-import logo from './logo.svg';
 import './App.css';
-import { fetchCovidStats } from './store/covidStats';
+import CountriesList from './components/CountriesList';
+import CountryDetails from './components/CountryDetails';
+import RegionsList from './components/RegionsList';
+import RegionDetails from './components/RegionDetails';
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCovidStats({ date: '2022-03-05' }));
-  }, []);
+  const { casesByCountry } = useSelector((state) => state);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<CountriesList />} end />
+      {
+        Object.keys(casesByCountry).map(
+          (country) => (
+            <Route
+              key={country}
+              path={`${country}`}
+              element={
+                casesByCountry[country].regions.length === 0
+                  ? <CountryDetails country={casesByCountry[country]} />
+                  : <RegionsList country={country} regions={casesByCountry[country].regions} />
+              }
+            />
+          ),
+        )
+      }
+      {
+        Object.keys(casesByCountry).map(
+          (country) => (
+            casesByCountry[country].regions.map(
+              (region) => (
+                <Route
+                  key={region.id}
+                  path={`${country}/${region.id}`}
+                  element={<RegionDetails region={region} />}
+                />
+              ),
+            )
+          ),
+        )
+      }
+    </Routes>
   );
 }
 
