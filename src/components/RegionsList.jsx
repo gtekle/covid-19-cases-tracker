@@ -7,6 +7,8 @@ import {
   useLocation,
 } from 'react-router-dom';
 
+import Region from './Region';
+
 const RegionsList = (props) => {
   const { regions } = props;
   const params = useParams();
@@ -29,7 +31,7 @@ const RegionsList = (props) => {
         {
           regions.map((region) => (
             <Link key={region.id} to={`${region.id}`}>
-              {region.name}
+              <Region region={region} />
             </Link>
           ))
         }
