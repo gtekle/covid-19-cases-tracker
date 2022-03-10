@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-
 import { FaChevronLeft } from 'react-icons/fa';
 
 import getCurrentDate from '../utils/currentDate';
@@ -20,7 +19,6 @@ const CountryDetails = ({ country }) => {
     todayNewOpenCases: country.today_new_OpenCases,
     todayNewRecovered: country.today_new_Recovered,
   };
-  console.log(country);
   const currentDate = getCurrentDate();
   const navigate = useNavigate();
   return (
