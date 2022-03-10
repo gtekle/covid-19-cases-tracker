@@ -14,7 +14,7 @@ const CountriesList = () => {
   const dispatch = useDispatch();
   const { casesByCountry, totalCases } = useSelector((state) => state);
   let alternatingBackgroundColor = 'default_color';
-  useEffect(async () => {
+  useEffect(() => {
     if (Object.keys(casesByCountry).length === 0) dispatch(fetchCovidStats({ date: currentDate }));
   }, []);
   return (
@@ -61,7 +61,7 @@ const CountriesList = () => {
                 }
               }
               return (
-                <Link key={country} to={country} className={alternatingBackgroundColor}>
+                <Link key={country} to={`/${country}`} className={alternatingBackgroundColor}>
                   <Country country={casesByCountry[country]} />
                 </Link>
               );

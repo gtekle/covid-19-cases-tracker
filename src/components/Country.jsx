@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Card } from 'react-bootstrap';
 import { BsArrowRightCircle } from 'react-icons/bs';
 
 const Country = ({ country }) => (
@@ -19,7 +18,7 @@ const Country = ({ country }) => (
 Country.propTypes = {
   country: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    today_confirmed: PropTypes.string.isRequired,
+    today_confirmed: PropTypes.number.isRequired,
   }).isRequired,
 };
 

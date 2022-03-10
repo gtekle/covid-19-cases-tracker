@@ -6,17 +6,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './index.css';
 import App from './App';
-import configureStore from './store/configureStore';
+import store from './store/configureStore';
 
-const store = configureStore();
+console.log(store);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
+    <Router>
+      <Provider store={store}>
         <App />
-      </Router>
-    </Provider>
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 );
