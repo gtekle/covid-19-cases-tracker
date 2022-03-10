@@ -36,11 +36,14 @@
 
 .countries_list_hero .hero_text {
   flex: 1;
-  align-self: center;
+  text-align: right;
+  align-self: flex-end;
+  padding: 0.4em;
 }
 
-.countries_list_hero .hero_text h1 {
-  padding: 0.2em 0;
+.countries_list_hero .hero_text h2 {
+  padding: 0.1em 0;
+  margin: 0;
   text-transform: uppercase;
 }
 

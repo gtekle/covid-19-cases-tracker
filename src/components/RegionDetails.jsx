@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 
 import getCurrentDate from '../utils/currentDate';
+import coronaVirusImagePath from '../assets/img/Corona.jpg';
 
 const RegionDetails = ({ region }) => {
   const regionDetails = {
@@ -37,6 +38,7 @@ const RegionDetails = ({ region }) => {
         <span> detail stats</span>
       </div>
       <div className="countries_list_hero">
+        <img src={coronaVirusImagePath} alt="corona virus" />
         <div className="hero_text">
           <h2>{regionDetails.name}</h2>
           <span>
