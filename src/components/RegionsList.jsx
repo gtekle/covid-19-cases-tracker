@@ -53,13 +53,6 @@ const RegionsList = ({ country }) => {
   );
 };
 
-// RegionsList.propTypes = {
-//   country: PropTypes.string.isRequired,
-//   regions: PropTypes.arrayOf(PropTypes.shape({
-//     id: PropTypes.string,
-//     name: PropTypes.string,
-//   })).isRequired,
-// };
 RegionsList.propTypes = {
   country: PropTypes.shape({
     id: PropTypes.string,

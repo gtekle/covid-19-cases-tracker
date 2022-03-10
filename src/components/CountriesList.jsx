@@ -31,6 +31,7 @@ const CountriesList = () => {
         <div className="hero_text">
           <h1>Worldwide</h1>
           <span>{totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}</span>
+          <span> cases</span>
         </div>
       </div>
       <div className="all_stats_divider">
