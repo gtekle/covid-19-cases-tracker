@@ -38,8 +38,8 @@ const CountryDetails = ({ country }) => {
         </div>
         <span> detail stats</span>
       </div>
-      <div className="countries_list_hero">
-        <img src={imageUrl} alt="world map" />
+      <div className="countryDetail_list_hero">
+        <img src={imageUrl} alt={country.name} />
         <div className="hero_text">
           <h2>{country.name}</h2>
           <span>

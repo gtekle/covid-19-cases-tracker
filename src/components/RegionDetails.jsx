@@ -37,8 +37,8 @@ const RegionDetails = ({ region }) => {
         </div>
         <span> detail stats</span>
       </div>
-      <div className="countries_list_hero">
-        <img src={coronaVirusImagePath} alt="corona virus" />
+      <div className="regions_list_hero">
+        <img className="image_for_corona" src={coronaVirusImagePath} alt="corona virus" />
         <div className="hero_text">
           <h2>{regionDetails.name}</h2>
           <span>

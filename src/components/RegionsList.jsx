@@ -28,8 +28,8 @@ const RegionsList = ({ country }) => {
         </div>
         <span>region stats</span>
       </div>
-      <div className="countries_list_hero">
-        <img src={imageUrl} alt="world map" />
+      <div className="regions_list_hero">
+        <img src={imageUrl} alt={country.name} />
         <div className="hero_text">
           <h2>{country.name}</h2>
           <span>

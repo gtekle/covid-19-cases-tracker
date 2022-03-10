@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
+import { BsCalendarDate } from 'react-icons/bs';
 
 import WORLD_MAP from '../assets/img/world-map.png';
 import getCurrentDate from '../utils/currentDate';
@@ -25,12 +26,16 @@ const CountriesList = () => {
           <span>{currentDate}</span>
         </div>
         <span>All Stats</span>
+        <div className="pick_date">
+          <BsCalendarDate />
+        </div>
       </div>
       <div className="countries_list_hero">
         <img src={WORLD_MAP} alt="world map" />
         <div className="hero_text">
-          <h1>Worldwide</h1>
+          <h1>Global</h1>
           <span>{totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}</span>
+          <br />
           <span> cases</span>
         </div>
       </div>
