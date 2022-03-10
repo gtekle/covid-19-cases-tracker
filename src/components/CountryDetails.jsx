@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 
 import getCurrentDate from '../utils/currentDate';
-import WORLD_MAP from '../assets/img/world-map.png';
+import getCounryMapUrl from '../utils/countryMapURL';
 
 const CountryDetails = ({ country }) => {
   const countryDetails = {
@@ -21,6 +21,7 @@ const CountryDetails = ({ country }) => {
   };
   const currentDate = getCurrentDate();
   const navigate = useNavigate();
+  const imageUrl = getCounryMapUrl(country.name, 128);
   return (
     <div className="details_container">
       <div className="details_header">
@@ -38,7 +39,7 @@ const CountryDetails = ({ country }) => {
         <span> detail stats</span>
       </div>
       <div className="countries_list_hero">
-        <img src={WORLD_MAP} alt="world map" />
+        <img src={imageUrl} alt="world map" />
         <div className="hero_text">
           <h2>{country.name}</h2>
           <span>

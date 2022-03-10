@@ -240,4 +240,19 @@ const countryCodes = {
   ZW: 'Zimbabwe',
 };
 
-export default countryCodes;
+const getCountryTwoLetterCode = (countryName) => {
+  let countryCode = '';
+  // These counries are excluded from the list for the sole reason of not getting clear map.
+  const excludedCountries = [
+    'Diamond Princess',
+    'MS Zaandam',
+    'East Timor',
+    'West Bank and Gaza',
+  ];
+  if (excludedCountries.includes(countryName)) return countryCode;
+  countryCode = Object.keys(countryCodes).find((key) => countryCodes[key] === countryName);
+
+  return countryCode === undefined ? 'ad' : countryCode.toLowerCase();
+};
+
+export default getCountryTwoLetterCode;

@@ -7,11 +7,12 @@ import {
 import { FaChevronLeft } from 'react-icons/fa';
 
 import Region from './Region';
-import WORLD_MAP from '../assets/img/world-map.png';
+import getCounryMapUrl from '../utils/countryMapURL';
 
 const RegionsList = ({ country }) => {
   const { regions } = country;
   const navigate = useNavigate();
+  const imageUrl = getCounryMapUrl(country.name, 128);
   return (
     <div className="regions_list_container">
       <div className="regions_list_header">
@@ -28,7 +29,7 @@ const RegionsList = ({ country }) => {
         <span>region stats</span>
       </div>
       <div className="countries_list_hero">
-        <img src={WORLD_MAP} alt="world map" />
+        <img src={imageUrl} alt="world map" />
         <div className="hero_text">
           <h2>{country.name}</h2>
           <span>
