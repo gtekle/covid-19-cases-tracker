@@ -23,7 +23,7 @@ function App() {
               element={
                 casesByCountry[country].regions.length === 0
                   ? <CountryDetails country={casesByCountry[country]} />
-                  : <RegionsList country={country} regions={casesByCountry[country].regions} />
+                  : <RegionsList country={casesByCountry[country]} />
               }
             />
           ),

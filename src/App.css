@@ -1,4 +1,5 @@
-.countries_list_header {
+.countries_list_header,
+.regions_list_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,7 +8,8 @@
   color: #fff;
 }
 
-.countries_list_header_back {
+.countries_list_header_back,
+.regions_list_header_back {
   display: flex;
   align-items: center;
   gap: 0.2em;
@@ -17,7 +19,8 @@
   line-height: 1.5;
 }
 
-.countries_list_hero {
+.countries_list_hero,
+.regions_list_hero {
   background-color: #5687e4;
   display: flex;
   justify-content: space-between;
@@ -99,6 +102,43 @@
   border: none;
 }
 
-.card-img-overlay p {
- font-size: 0.75em;
+.regions_list {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #5687e4;
+  margin-bottom: 0;
+}
+
+.regions_list a {
+  width: 100%;
+  background-color: #4167b0;
+  color: #fff;
+  padding: 0.4em;
+}
+
+.regions_list a:nth-child(even) {
+  background-color: #3d60a2;
+}
+
+.regions_list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4em;
+}
+
+.regions_list li p {
+  margin: 0;
+}
+
+.region_cases {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.region_cases p {
+  font-size: 0.75em;
 }

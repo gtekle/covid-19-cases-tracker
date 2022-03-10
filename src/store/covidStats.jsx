@@ -4,13 +4,11 @@ const BASE_URL = 'https://api.covid19tracking.narrativa.com/api/';
 const FETCH_SUCCESS = 'covidStats/covidStatsFetched';
 const FETCH_FAIL = 'covidStats/covidStatsFetchFailed';
 
-export const fetchCovidStats = () => async (dispatch) => {
+export const fetchCovidStats = (param) => async (dispatch) => {
   try {
-    const { data } = await axios.request({
-      baseURL: BASE_URL,
-      url: '/2022-03-09',
-    });
-    const casesByCountry = data.dates['2022-03-09'].countries;
+    console.log(param.date);
+    const { data } = await axios.get(`${BASE_URL}/${param.date}`);
+    const casesByCountry = data.dates[param.date].countries;
     const totalCases = data.total;
 
     dispatch({
