@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
-import { BsCalendarDate } from 'react-icons/bs';
 
 import WORLD_MAP from '../assets/img/world-map.png';
 import getCurrentDate from '../utils/currentDate';
 
 import { fetchCovidStats } from '../store/covidStats';
 import Country from './Country';
+import CustomDatePicker from './CustomDatePicker';
 
 const CountriesList = () => {
   const currentDate = getCurrentDate();
@@ -23,11 +23,11 @@ const CountriesList = () => {
       <div className="countries_list_header">
         <div className="countries_list_header_back">
           <FaChevronLeft />
-          <span>{currentDate}</span>
+          <span>{totalCases.date}</span>
         </div>
         <span>All Stats</span>
         <div className="pick_date">
-          <BsCalendarDate />
+          <CustomDatePicker />
         </div>
       </div>
       <div className="countries_list_hero">
@@ -36,7 +36,7 @@ const CountriesList = () => {
           <h1>Global</h1>
           <span>{totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}</span>
           <br />
-          <span> cases</span>
+          <span>cases</span>
         </div>
       </div>
       <div className="all_stats_divider">
@@ -61,7 +61,7 @@ const CountriesList = () => {
         <span>
           <b>{totalCases.today_open_cases && totalCases.today_open_cases.toLocaleString('en-US')}</b>
           <br />
-          Open
+          Open Cases
         </span>
       </div>
       <div className="stats_by_country_divider">

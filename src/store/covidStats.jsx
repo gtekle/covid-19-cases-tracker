@@ -6,7 +6,6 @@ const FETCH_FAIL = 'covidStats/covidStatsFetchFailed';
 
 export const fetchCovidStats = (param) => async (dispatch) => {
   try {
-    console.log(param.date);
     const { data } = await axios.get(`${BASE_URL}/${param.date}`);
     const casesByCountry = data.dates[param.date].countries;
     const totalCases = data.total;
@@ -40,7 +39,7 @@ const covidStatsReducer = (state = initialState, action) => {
         totalCases: action.payload.totalCases,
       };
     case FETCH_FAIL:
-      return state;
+      return initialState;
     default:
       return state;
   }

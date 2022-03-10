@@ -11,6 +11,7 @@
 
 .countries_list_header_back,
 .regions_list_header_back {
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 0.2em;
@@ -21,8 +22,25 @@
 }
 
 .countries_list_header .pick_date {
+  flex: 1;
+  display: flex;
+}
+
+.countries_list_header .pick_date button {
   font-size: 1.5em;
-  font-weight: 600;
+  padding: 0 0.2em;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.countries_list_header .pick_date form input {
+  font-size: 0.8rem;
+  width: 70%;
+}
+
+.react-datepicker__input-container {
+  text-align: right;
+  padding-top: 0.35em;
 }
 
 .countries_list_hero {
@@ -232,6 +250,10 @@
 
 .region_cases p {
   font-size: 0.75em;
+}
+
+.country_detail p:first-child {
+  font-weight: 700;
 }
 
 .country_detail_stats li {
