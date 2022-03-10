@@ -52,17 +52,32 @@
 
 .all_stats_divider,
 .stats_by_country_divider {
-  color: #fff;
   background-color: #35548b;
   text-transform: uppercase;
-  text-align: center;
-  padding: 0.1em;
+  font-weight: 600;
+  font-size: 0.85em;
+  color: #fff;
+  padding: 0.2em 0.4em;
 }
 
 .all_stats_detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   background-color: #4369b2;
   color: #fff;
   border: 1px solid #4369b2;
+}
+
+.all_stats_detail span {
+  width: 50%;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.all_stats_detail span b {
+  font-size: 1.2em;
 }
 
 .countries_list {

@@ -35,17 +35,29 @@ const CountriesList = () => {
         </div>
       </div>
       <div className="all_stats_divider">
-        <span>all stats</span>
+        <span>all stats - todate</span>
       </div>
       <div className="all_stats_detail">
-        <p>
-          Todate Confirmed Cases:
-          {totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}
-        </p>
-        <p>
-          Todate Deaths:
-          {totalCases.today_deaths && totalCases.today_deaths.toLocaleString('en-US')}
-        </p>
+        <span>
+          <b>{totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}</b>
+          <br />
+          Confirmed
+        </span>
+        <span>
+          <b>{totalCases.today_deaths && totalCases.today_deaths.toLocaleString('en-US')}</b>
+          <br />
+          Deaths
+        </span>
+        <span>
+          <b>{totalCases.today_recovered && totalCases.today_recovered.toLocaleString('en-US')}</b>
+          <br />
+          Recovered
+        </span>
+        <span>
+          <b>{totalCases.today_open_cases && totalCases.today_open_cases.toLocaleString('en-US')}</b>
+          <br />
+          Open
+        </span>
       </div>
       <div className="stats_by_country_divider">
         <span>stats by country</span>
