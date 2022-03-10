@@ -56,6 +56,7 @@
 }
 .countries_list li {
   padding: 0.5em;
+  height: 100%;
 }
 
 .countries_list a {
@@ -66,10 +67,38 @@
   color: #fff;
 }
 
-.default_color {
-  background-color: #4167b0;
+.countries_list li .country_img {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
 }
 
-.other_color {
+.countries_list li .country_detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.countries_list li .country_detail p {
+  font-size: 0.75em;
+  margin: 0;
+}
+
+.default_color,
+.default_color .card {
+  background-color: #4167b0;
+  border: none;
+}
+
+.other_color,
+.other_color .card {
+  display: flex;
+  flex-direction: column;
   background-color: #3d60a2;
+  border: none;
+}
+
+.card-img-overlay p {
+ font-size: 0.75em;
 }
