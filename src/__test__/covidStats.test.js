@@ -1,4 +1,4 @@
-import reducer, { fetchCovidStats } from './covidStats.jsx';
+import reducer, { fetchCovidStats } from '../store/covidStats.jsx';
 import axios from 'axios';
 import getCurrentDate from '../utils/currentDate.js';
 

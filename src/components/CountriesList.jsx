@@ -10,7 +10,7 @@ import { fetchCovidStats } from '../store/covidStats';
 import Country from './Country';
 import CustomDatePicker from './CustomDatePicker';
 
-const CountriesList = () => {
+export const CountriesList = () => {
   const currentDate = getCurrentDate();
   const dispatch = useDispatch();
   const { casesByCountry, totalCases } = useSelector((state) => state);
@@ -79,7 +79,7 @@ const CountriesList = () => {
                 }
               }
               return (
-                <Link key={country} to={`/${country}`} className={alternatingBackgroundColor}>
+                <Link key={country} data-testid={`${country.id}-testId`} to={`/${country}`} className={alternatingBackgroundColor}>
                   <Country country={casesByCountry[country]} />
                 </Link>
               );
