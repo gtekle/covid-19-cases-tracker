@@ -1,51 +1,41 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# covid-19-cases-tracker
+# Covid-19 Cases Tracker
 
 
-> Description the project.
-
+> This web app helps you get latest covid-19 global and by country statistical data by fetching live data from a public API provided by Narrativa that collects information from different data sources to provide comprehensive data for the novel coronavirus, SARS-CoV-2 (Covid-19).
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Javascript
+- React, Redux, Jest, React Testing Library
+- CSS
 
-## Live Demo (if available)
+## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[View live](https://gracious-varahamihira-b0538e.netlify.app/)
 
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+To run this application please follow these steps:
 
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
+- Install Node.js ^14.0
+- clone the repository by running\
+    `git clone https://github.com/gtekle/covid-19-cases-tracker.git`
+- navigate to the folder\
+    `cd covid-19-cases-tracker`
+- Install packages\
+    `npm install`
+- run the application\
+    `npm start`
 
 ## Author
 
-👤 **Author1**
+👤 **Tekle**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
+- GitHub: [@gtekle](https://github.com/gtekle)
+- LinkedIn: [@gtekle](www.linkedin.com/in/gtekle)
 
 ## 🤝 Contributing
 
@@ -59,9 +49,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- I would like to acknowledge [Narrativa](https://covid19tracking.narrativa.com/index_en.html) for Coronavirus Data API in their Covid-19 Tracking Project API from which all uptodate covid-19 stats are fetched.
+- I would also like to extend my gratitude to [Nelson Sakwa on Behance](https://www.behance.net/sakwadesignstudio) for the original design idea.
 
 ## 📝 License
 
