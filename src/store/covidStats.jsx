@@ -9,7 +9,6 @@ export const fetchCovidStats = (param) => async (dispatch) => {
     const { data } = await axios.get(`${BASE_URL}/${param.date}`);
     const casesByCountry = data.dates[param.date].countries;
     const totalCases = data.total;
-
     dispatch({
       type: FETCH_SUCCESS,
       payload: {
@@ -17,6 +16,7 @@ export const fetchCovidStats = (param) => async (dispatch) => {
         totalCases,
       },
     });
+    return data;
   } catch (error) {
     dispatch({
       type: FETCH_FAIL,

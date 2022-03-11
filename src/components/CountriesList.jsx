@@ -79,7 +79,7 @@ const CountriesList = () => {
                 }
               }
               return (
-                <Link key={country} to={`/${country}`} className={alternatingBackgroundColor}>
+                <Link key={country} data-testid={`${country.id}-testId`} to={`/${country}`} className={alternatingBackgroundColor}>
                   <Country country={casesByCountry[country]} />
                 </Link>
               );
