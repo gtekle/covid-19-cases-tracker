@@ -10,7 +10,6 @@ import RegionDetails from './components/RegionDetails';
 
 function App() {
   const { casesByCountry } = useSelector((state) => state);
-  console.log('App', casesByCountry);
   return (
     <Routes>
       <Route path="/" element={<CountriesList />} />

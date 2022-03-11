@@ -66,17 +66,9 @@
 .countries_list_hero .hero_text h1 {
   padding: 0.1em 0;
   margin: 0;
-  text-transform: uppercase;
-}
-
-.countries_list_hero .hero_text span {
-  display: inline-block;
-}
-
-.countries_list_hero h1 {
   font-size: 1.5em;
   line-height: 1;
-  margin: 0;
+  text-transform: uppercase;
 }
 
 .all_stats_divider,
@@ -105,6 +97,10 @@
   padding: 0.5em;
 }
 
+.countries_list_hero .hero_text span {
+  display: inline-block;
+}
+
 .all_stats_detail span b {
   font-size: 1.2em;
 }
@@ -117,6 +113,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .countries_list li {
   padding: 0.5em;
   height: 100%;
@@ -145,6 +142,25 @@
   text-align: right;
 }
 
+.region_cases {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.region_cases p {
+  font-size: 0.75em;
+}
+
+.regions_list li p {
+  margin: 0;
+}
+
+.country_detail p:first-child {
+  font-weight: 700;
+}
+
 .countries_list li .country_detail p {
   font-size: 0.75em;
   margin: 0;
@@ -162,14 +178,6 @@
   flex-direction: column;
   background-color: #3d60a2;
   border: none;
-}
-
-.default_color .country_img img {
-  filter: invert(10%) sepia(58%) saturate(613%) hue-rotate(180deg) brightness(86%) contrast(87%);
-}
-
-.other_color .country_img img {
-  filter: invert(10%) sepia(14%) saturate(2379%) hue-rotate(181deg) brightness(93%) contrast(87%);
 }
 
 .regions_list,
@@ -190,7 +198,6 @@
   color: #fff;
   padding: 0.4rem;
 }
-
 
 .regions_list_hero .hero_text,
 .countryDetail_list_hero .hero_text {
@@ -219,6 +226,14 @@
   border-radius: 0.8rem;
 }
 
+.default_color .country_img img {
+  filter: invert(10%) sepia(58%) saturate(613%) hue-rotate(180deg) brightness(86%) contrast(87%);
+}
+
+.other_color .country_img img {
+  filter: invert(10%) sepia(14%) saturate(2379%) hue-rotate(181deg) brightness(93%) contrast(87%);
+}
+
 .regions_list a {
   width: 100%;
   background-color: #4167b0;
@@ -235,25 +250,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.4em;
-}
-
-.regions_list li p {
-  margin: 0;
-}
-
-.region_cases {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1em;
-}
-
-.region_cases p {
-  font-size: 0.75em;
-}
-
-.country_detail p:first-child {
-  font-weight: 700;
 }
 
 .country_detail_stats li {
