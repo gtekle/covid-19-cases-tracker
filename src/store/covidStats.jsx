@@ -18,7 +18,6 @@ export const fetchCovidStats = (param) => async (dispatch) => {
         totalCases,
       },
     });
-    return data;
   } catch (error) {
     res = error;
     dispatch({

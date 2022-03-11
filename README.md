@@ -2,8 +2,9 @@
 
 # Covid-19 Cases Tracker
 
-
 > This web app helps you get latest covid-19 global and by country statistical data by fetching live data from a public API provided by Narrativa that collects information from different data sources to provide comprehensive data for the novel coronavirus, SARS-CoV-2 (Covid-19).
+
+![](./src/assets/img/demo.gif)
 
 ## Built With
 
