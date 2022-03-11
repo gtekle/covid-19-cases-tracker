@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import DatePicker from 'react-datepicker';
 import { BsCalendarDate } from 'react-icons/bs';
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchCovidStats } from '../store/covidStats';
