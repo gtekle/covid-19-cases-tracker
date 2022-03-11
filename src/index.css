@@ -1,5 +1,10 @@
+html {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 564px;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -14,6 +19,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 50%;
+  height: auto;
 }
 
 code {

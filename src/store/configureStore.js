@@ -1,7 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import reducer from './covidStats';
 
-export default function () {
-  return configureStore({ reducer });
-}
+const store = createStore(
+  reducer,
+  applyMiddleware(logger, thunk),
+);
+
+export default store;

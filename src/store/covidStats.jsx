@@ -1,40 +1,48 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchCovidStats = createAsyncThunk(
-  'covidStats/fetchStats',
-  async (param, thunkApi) => {
-    const { dispatch } = thunkApi;
-    const { data } = await axios.get(`https://api.covid19tracking.narrativa.com/api/${param.date}`);
-    const casesByCountry = data.dates['2022-03-05'].countries;
+const BASE_URL = 'https://api.covid19tracking.narrativa.com/api/';
+const FETCH_SUCCESS = 'covidStats/covidStatsFetched';
+const FETCH_FAIL = 'covidStats/covidStatsFetchFailed';
+
+export const fetchCovidStats = (param) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${BASE_URL}/${param.date}`);
+    const casesByCountry = data.dates[param.date].countries;
     const totalCases = data.total;
-    console.log(casesByCountry);
+
     dispatch({
-      type: 'covidStats/statsFetched',
+      type: FETCH_SUCCESS,
       payload: {
         casesByCountry,
         totalCases,
       },
     });
-  },
-);
+  } catch (error) {
+    dispatch({
+      type: FETCH_FAIL,
+      payload: error,
+    });
+  }
+};
 
 const initialState = {
   casesByCountry: {},
   totalCases: {},
 };
 
-const slice = createSlice({
-  name: 'covidStats',
-  initialState,
-  reducers: {
-    /* eslint-disable no-param-reassign */
-    statsFetched: (state, action) => {
-      state.casesByCountry = action.payload.casesByCountry;
-      state.totalCases = action.payload.totalCases;
-    },
-  },
-});
+const covidStatsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_SUCCESS:
+      return {
+        ...state,
+        casesByCountry: action.payload.casesByCountry,
+        totalCases: action.payload.totalCases,
+      };
+    case FETCH_FAIL:
+      return initialState;
+    default:
+      return state;
+  }
+};
 
-export const { statsFetched } = slice.actions;
-export default slice.reducer;
+export default covidStatsReducer;

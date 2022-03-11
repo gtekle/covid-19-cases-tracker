@@ -12,17 +12,17 @@ function App() {
   const { casesByCountry } = useSelector((state) => state);
   return (
     <Routes>
-      <Route path="/" element={<CountriesList />} end />
+      <Route path="/" element={<CountriesList />} />
       {
         Object.keys(casesByCountry).map(
           (country) => (
             <Route
               key={country}
-              path={`${country}`}
+              path={`/${country}`}
               element={
                 casesByCountry[country].regions.length === 0
                   ? <CountryDetails country={casesByCountry[country]} />
-                  : <RegionsList country={country} regions={casesByCountry[country].regions} />
+                  : <RegionsList country={casesByCountry[country]} />
               }
             />
           ),
@@ -35,7 +35,7 @@ function App() {
               (region) => (
                 <Route
                   key={region.id}
-                  path={`${country}/${region.id}`}
+                  path={`/${country}/${region.id}`}
                   element={<RegionDetails region={region} />}
                 />
               ),
