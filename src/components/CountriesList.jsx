@@ -10,7 +10,7 @@ import { fetchCovidStats } from '../store/covidStats';
 import Country from './Country';
 import CustomDatePicker from './CustomDatePicker';
 
-export const CountriesList = () => {
+const CountriesList = () => {
   const currentDate = getCurrentDate();
   const dispatch = useDispatch();
   const { casesByCountry, totalCases } = useSelector((state) => state);

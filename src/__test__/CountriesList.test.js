@@ -1,10 +1,10 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 
 import store from '../store/configureStore';
-import CountriesList from '../components/CountriesList.jsx';
+import CountriesList from '../components/CountriesList';
 
 describe('Countries List', () => {
   it('CountriesList component renders correctly', () => {
@@ -13,7 +13,7 @@ describe('Countries List', () => {
         <Router>
           <CountriesList />
         </Router>
-      </Provider>
+      </Provider>,
     );
     expect(tree).toMatchSnapshot();
   });
@@ -24,9 +24,9 @@ describe('Countries List', () => {
         <Router>
           <CountriesList />
         </Router>
-      </Provider>
+      </Provider>,
     );
     const txt = getByText('Recovered');
     expect(txt).toBeInTheDocument();
   });
-})
+});

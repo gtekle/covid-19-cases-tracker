@@ -1,10 +1,10 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 
 import store from '../store/configureStore';
-import RegionsList from '../components/RegionsList.jsx';
+import RegionsList from '../components/RegionsList';
 
 describe('Regions list', () => {
   const country = {
@@ -16,9 +16,9 @@ describe('Regions list', () => {
         id: 'region_one',
         name: 'region-one',
         today_confirmed: 450000,
-      }
-    ]
-  }
+      },
+    ],
+  };
 
   it('RegionsList component renders correctly', () => {
     const { getByText } = render(
@@ -26,9 +26,9 @@ describe('Regions list', () => {
         <Router>
           <RegionsList country={country} />
         </Router>
-      </Provider>
+      </Provider>,
     );
     const countryName = getByText('Albania');
     expect(countryName).toBeInTheDocument();
   });
-})
+});

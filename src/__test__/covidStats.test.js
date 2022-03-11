@@ -1,15 +1,15 @@
-import reducer, { fetchCovidStats } from '../store/covidStats.jsx';
 import axios from 'axios';
-import getCurrentDate from '../utils/currentDate.js';
+import reducer, { fetchCovidStats } from '../store/covidStats.js';
+import getCurrentDate from '../utils/currentDate';
 
 jest.mock('axios');
 
 test('should return the initial state', () => {
   expect(reducer(undefined, {})).toEqual({
-  casesByCountry: {},
-  totalCases: {},
-})
-})
+    casesByCountry: {},
+    totalCases: {},
+  });
+});
 
 it('Should returns not null totalCases and casesByCountry objects', async () => {
   const currentDate = getCurrentDate();
@@ -17,30 +17,29 @@ it('Should returns not null totalCases and casesByCountry objects', async () => 
     payload: {
       casesByCountry: {
         Albania: {
-          name: "Albania",
+          name: 'Albania',
           today_confirmed: 272479,
-          regions: []
+          regions: [],
         },
         Australia: {
-          name: "Albania",
+          name: 'Albania',
           today_confirmed: 3500000,
           regions: [
             {
               id: 'region1',
-              name: "Region One",
-            }
-          ]
-        }
+              name: 'Region One',
+            },
+          ],
+        },
       },
       totalCases: {
         today_confirmed: 450000000,
         today_deaths: 6000000,
-      }
-    }
+      },
+    },
   });
 
-  const {totalCases, casesByCountry} = fetchCovidStats({ date: currentDate });
+  const { totalCases, casesByCountry } = fetchCovidStats({ date: currentDate });
   expect(casesByCountry).not.toBeNull();
   expect(totalCases).not.toBeNull();
 });
-
