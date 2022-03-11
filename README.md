@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-[View live](https://space-travelers-hub-adorn-tekle.netlify.app/)
+[View live](https://gracious-varahamihira-b0538e.netlify.app/)
 
 
 ## Getting Started
@@ -22,9 +22,9 @@ To run this application please follow these steps:
 
 - Install Node.js ^14.0
 - clone the repository by running\
-    `git clone https://github.com/gtekle/ covid-19-cases-tracker.git`
+    `git clone https://github.com/gtekle/covid-19-cases-tracker.git`
 - navigate to the folder\
-    `cd  covid-19-cases-tracker`
+    `cd covid-19-cases-tracker`
 - Install packages\
     `npm install`
 - run the application\
