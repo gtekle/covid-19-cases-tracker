@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FaChevronLeft } from 'react-icons/fa';
+import { FaChevronLeft, FaFilter } from 'react-icons/fa';
 
 import WORLD_MAP from '../assets/img/world-map.png';
 import getCurrentDate from '../utils/currentDate';
@@ -42,7 +42,15 @@ const CountriesList = () => {
           <CustomDatePicker />
         </div>
         <form>
-          <input type="text" name="countryName" value={countrName} id="countryName" onChange={ handleChange } />
+          <input 
+            type="text"
+            name="countryName"
+            value={countrName}
+            id="countryName"
+            onChange={ handleChange }
+            placeholder="search..."
+          />
+          <FaFilter />
         </form>
       </div>
       <div className="countries_list_hero">
