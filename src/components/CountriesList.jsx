@@ -50,7 +50,9 @@ const CountriesList = () => {
         </div>
         <span>All Stats</span>
         <div className="pick_date">
-          <CustomDatePicker />
+          { !searchInputStatus &&
+            <CustomDatePicker />
+          }
           <form>
             { searchInputStatus &&
               <input 
