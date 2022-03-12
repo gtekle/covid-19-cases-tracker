@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'https://api.covid19tracking.narrativa.com/api/';
 const FETCH_SUCCESS = 'covidStats/covidStatsFetched';
+const FILTER_BY_COUNTRY_NAME = 'covidStats/filteredByCountryName';
 const FETCH_FAIL = 'covidStats/covidStatsFetchFailed';
 
 export const fetchCovidStats = (param) => async (dispatch) => {
@@ -29,8 +30,14 @@ export const fetchCovidStats = (param) => async (dispatch) => {
   return res;
 };
 
+export const filterCountriesByName = (payload) => ({
+  type: FILTER_BY_COUNTRY_NAME,
+  payload,
+});
+
 const initialState = {
   casesByCountry: {},
+  filteredCountries: [],
   totalCases: {},
 };
 
@@ -41,6 +48,15 @@ const covidStatsReducer = (state = initialState, action) => {
         ...state,
         casesByCountry: action.payload.casesByCountry,
         totalCases: action.payload.totalCases,
+      };
+    case FILTER_BY_COUNTRY_NAME:
+      console.log(action.payload.casesByCountry);
+      return {
+        ...state,
+        filteredCountries: [ ...Object.keys(action.payload.casesByCountry).filter(
+          (country) => country.toLowerCase().includes(action.payload.countryName.toLowerCase())
+          )
+        ],
       };
     case FETCH_FAIL:
       return initialState;

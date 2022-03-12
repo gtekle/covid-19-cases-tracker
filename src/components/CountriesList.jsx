@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
@@ -6,18 +6,30 @@ import { FaChevronLeft } from 'react-icons/fa';
 import WORLD_MAP from '../assets/img/world-map.png';
 import getCurrentDate from '../utils/currentDate';
 
-import { fetchCovidStats } from '../store/covidStats';
+import { fetchCovidStats, filterCountriesByName } from '../store/covidStats';
 import Country from './Country';
 import CustomDatePicker from './CustomDatePicker';
 
 const CountriesList = () => {
+  const [countrName, setCountryName] = useState('');
   const currentDate = getCurrentDate();
   const dispatch = useDispatch();
-  const { casesByCountry, totalCases } = useSelector((state) => state);
+  const { casesByCountry, totalCases, filteredCountries } = useSelector((state) => state);
   let alternatingBackgroundColor = 'default_color';
+
   useEffect(() => {
     if (Object.keys(casesByCountry).length === 0) dispatch(fetchCovidStats({ date: currentDate }));
   }, []);
+  
+  useEffect(() => {
+    if (casesByCountry) dispatch(filterCountriesByName({countryName: countrName, casesByCountry}));
+  }, [casesByCountry, countrName]);
+
+  const handleChange = (e) => {
+    const countryNameValue = e.target.value.trim();
+    setCountryName(countryNameValue);
+  }
+
   return (
     <div className="countries_list_container">
       <div className="countries_list_header">
@@ -29,6 +41,9 @@ const CountriesList = () => {
         <div className="pick_date">
           <CustomDatePicker />
         </div>
+        <form>
+          <input type="text" name="countryName" value={countrName} id="countryName" onChange={ handleChange } />
+        </form>
       </div>
       <div className="countries_list_hero">
         <img src={WORLD_MAP} alt="world map" />
@@ -69,7 +84,7 @@ const CountriesList = () => {
       </div>
       <ul className="countries_list">
         {
-          Object.keys(casesByCountry).map(
+          filteredCountries.map(
             (country, idx) => {
               if ((idx + 1) % 2 === 0) {
                 if (alternatingBackgroundColor === 'default_color') {
