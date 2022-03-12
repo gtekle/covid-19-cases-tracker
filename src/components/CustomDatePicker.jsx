@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { BsCalendarDate } from 'react-icons/bs';
+import { MdUpdate } from 'react-icons/md';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,7 +28,7 @@ const CustomDatePicker = () => {
           maxDate={new Date()}
         />
         <button type="submit">
-          <BsCalendarDate />
+          <MdUpdate />
         </button>
       </div>
     </form>

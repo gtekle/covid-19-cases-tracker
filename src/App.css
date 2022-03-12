@@ -24,6 +24,7 @@
 .countries_list_header .pick_date {
   flex: 1;
   display: flex;
+  justify-content: flex-end;
 }
 
 .countries_list_header .pick_date button {
@@ -111,6 +112,7 @@
   list-style: none;
   display: flex;
   justify-content: space-between;
+  background-color: #4369b2;
   flex-wrap: wrap;
 }
 
@@ -201,7 +203,7 @@
 
 .regions_list_hero .hero_text,
 .countryDetail_list_hero .hero_text {
-  width: 50%;
+  min-width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FaChevronLeft, FaFilter } from 'react-icons/fa';
+import { FaChevronLeft, FaSearch } from 'react-icons/fa';
 
 import WORLD_MAP from '../assets/img/world-map.png';
 import getCurrentDate from '../utils/currentDate';
@@ -12,6 +12,7 @@ import CustomDatePicker from './CustomDatePicker';
 
 const CountriesList = () => {
   const [countrName, setCountryName] = useState('');
+  const [searchInputStatus, setSearchInputStatus] = useState(false);
   const currentDate = getCurrentDate();
   const dispatch = useDispatch();
   const { casesByCountry, totalCases, filteredCountries } = useSelector((state) => state);
@@ -30,6 +31,16 @@ const CountriesList = () => {
     setCountryName(countryNameValue);
   }
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchInputStatus(true);
+  }
+
+  const handleOnSearchInputBlur = (e) => {
+    setCountryName('');
+    setSearchInputStatus(false);
+  }
+
   return (
     <div className="countries_list_container">
       <div className="countries_list_header">
@@ -40,18 +51,23 @@ const CountriesList = () => {
         <span>All Stats</span>
         <div className="pick_date">
           <CustomDatePicker />
+          <form>
+            { searchInputStatus &&
+              <input 
+                type="text"
+                name="countryName"
+                value={countrName}
+                id="countryName"
+                onChange={ handleChange }
+                onBlur={handleOnSearchInputBlur}
+                placeholder="search country..."
+              />
+            }
+            <button type="button" value="" onClick={handleSearch} >
+              <FaSearch />
+            </button>
+          </form>
         </div>
-        <form>
-          <input 
-            type="text"
-            name="countryName"
-            value={countrName}
-            id="countryName"
-            onChange={ handleChange }
-            placeholder="search..."
-          />
-          <FaFilter />
-        </form>
       </div>
       <div className="countries_list_hero">
         <img src={WORLD_MAP} alt="world map" />
