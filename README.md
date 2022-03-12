@@ -14,7 +14,7 @@
 
 ## Live Demo
 
-[View live](https://gracious-varahamihira-b0538e.netlify.app/)
+[View live](https://covid-19-cases-tracker-tek.netlify.app/)
 
 
 ## Getting Started
