@@ -3,6 +3,7 @@ import axios from 'axios';
 const BASE_URL = 'https://api.covid19tracking.narrativa.com/api/';
 const FETCH_SUCCESS = 'covidStats/covidStatsFetched';
 const FILTER_BY_COUNTRY_NAME = 'covidStats/filteredByCountryName';
+const FILTER_BY_PAGE_NUMBER = 'covidStats/filteredByPageNumber';
 const FETCH_FAIL = 'covidStats/covidStatsFetchFailed';
 
 export const fetchCovidStats = (param) => async (dispatch) => {
@@ -35,9 +36,15 @@ export const filterCountriesByName = (payload) => ({
   payload,
 });
 
+export const filterCountriesByPageNumber = (payload) => ({
+  type: FILTER_BY_PAGE_NUMBER,
+  payload,
+});
+
 const initialState = {
   casesByCountry: {},
   filteredCountries: [],
+  countriesPerPage: [],
   totalCases: {},
 };
 
@@ -50,13 +57,22 @@ const covidStatsReducer = (state = initialState, action) => {
         totalCases: action.payload.totalCases,
       };
     case FILTER_BY_COUNTRY_NAME:
-      console.log(action.payload.casesByCountry);
       return {
         ...state,
         filteredCountries: [ ...Object.keys(action.payload.casesByCountry).filter(
           (country) => country.toLowerCase().startsWith(action.payload.countryName.toLowerCase())
           )
         ],
+      };
+    case FILTER_BY_PAGE_NUMBER:
+      return {
+        ...state,
+        countriesPerPage: [ 
+          ...filterCountriesByName.slice(
+            action.payload.pageNumber,
+            action.payload.pageNumber + action.payload.pageSize
+          ),
+        ]
       };
     case FETCH_FAIL:
       return initialState;
