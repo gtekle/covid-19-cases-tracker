@@ -60,6 +60,7 @@ const CountriesList = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchInputStatus(true);
+    setPageNumber(0);
   }
 
   const handleOnSearchInputBlur = (e) => {
