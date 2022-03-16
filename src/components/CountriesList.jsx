@@ -9,7 +9,8 @@ import getCurrentDate from '../utils/currentDate';
 import {
   fetchCovidStats,
   filterCountriesByName,
-  filterCountriesByPageNumber 
+  filterCountriesByPageNumber,
+  clearCountriesPerPage
 } from '../store/covidStats';
 import Country from './Country';
 import CustomDatePicker from './CustomDatePicker';
@@ -30,17 +31,22 @@ const CountriesList = () => {
   }, []);
   
   useEffect(() => {
-    if (casesByCountry) dispatch(filterCountriesByName({countryName: countrName, casesByCountry}));
+    if (casesByCountry) {
+      dispatch(clearCountriesPerPage());
+      dispatch(filterCountriesByName({countryName: countrName, casesByCountry}));
+    }
+    
     if (filteredCountries) dispatch(filterCountriesByPageNumber({pageNumber, pageSize}));
-  }, [casesByCountry, countrName]);
 
+  }, [casesByCountry, countrName]);
+  
   useEffect(() => {
     const totalPages = Math.floor(filteredCountries.length / pageSize);
     if (filteredCountries && pageNumber <= totalPages) {
       dispatch(filterCountriesByPageNumber({pageNumber, pageSize}));
     }
 	}, [pageNumber]);
-
+  
   const lastCountryElementRef = useCallback(countryNode => {
     if(observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver( (entries) => {
@@ -51,23 +57,25 @@ const CountriesList = () => {
     
     if(countryNode) observer.current.observe(countryNode);
   }, [countriesPerPage]);
-
+  
   const handleChange = (e) => {
     const countryNameValue = e.target.value.trim();
+    dispatch(clearCountriesPerPage());
     setCountryName(countryNameValue);
+    setPageNumber(0);
   }
-
+  
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchInputStatus(true);
-    setPageNumber(0);
   }
-
+  
   const handleOnSearchInputBlur = (e) => {
     setCountryName('');
     setSearchInputStatus(false);
   }
 
+  const regex = /[*]/i;
   return (
     <div className="countries_list_container">
       <div className="countries_list_header">
@@ -149,7 +157,7 @@ const CountriesList = () => {
               return (
                 countriesPerPage.length === idx + 1
                 ? (
-                    <Link ref={lastCountryElementRef} key={country} data-testid={`${country.id}-testId`} to={`/${country}`} className={alternatingBackgroundColor}>
+                    <Link ref={lastCountryElementRef} key={country.replace(regex, '')} data-testid={`${country.id}-testId`} to={`/${country.replace(regex, '')}`} className={alternatingBackgroundColor}>
                       <Country country={casesByCountry[country]} />
                     </Link>
                   ) 

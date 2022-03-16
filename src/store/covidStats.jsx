@@ -4,6 +4,7 @@ const BASE_URL = 'https://api.covid19tracking.narrativa.com/api/';
 const FETCH_SUCCESS = 'covidStats/covidStatsFetched';
 const FILTER_BY_COUNTRY_NAME = 'covidStats/filteredByCountryName';
 const FILTER_BY_PAGE_NUMBER = 'covidStats/filteredByPageNumber';
+const CLEAER_COUNTRIES_PER_PAGE = 'covidStats/clearedCountriesPerPage';
 const FETCH_FAIL = 'covidStats/covidStatsFetchFailed';
 
 export const fetchCovidStats = (param) => async (dispatch) => {
@@ -41,6 +42,11 @@ export const filterCountriesByPageNumber = (payload) => ({
   payload,
 });
 
+export const clearCountriesPerPage = () => ({
+  type: CLEAER_COUNTRIES_PER_PAGE,
+  payload: [],
+})
+
 const initialState = {
   casesByCountry: {},
   filteredCountries: [],
@@ -76,6 +82,11 @@ const covidStatsReducer = (state = initialState, action) => {
           ),
         ]
       };
+    case CLEAER_COUNTRIES_PER_PAGE:
+      return {
+        ...state,
+        countriesPerPage: action.payload
+      }
     case FETCH_FAIL:
       return initialState;
     default:
