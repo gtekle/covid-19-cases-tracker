@@ -92,11 +92,13 @@ const CountriesList = () => {
           <FaChevronLeft />
           <span>{totalCases.date}</span>
         </div>
-        <span>All Stats</span>
+        { !searchInputStatus && <span>All Stats</span> }
         <div className="pick_date">
-          <button onClick={() => setDatePickerModalShow(true)}>
-            <BsFillCalendarDateFill />
-          </button>
+          { !searchInputStatus && 
+            <button onClick={() => setDatePickerModalShow(true)}>
+              <BsFillCalendarDateFill />
+            </button>
+          }
           <form>
             <DatePickerModal
               show={datePickerModalShow}
