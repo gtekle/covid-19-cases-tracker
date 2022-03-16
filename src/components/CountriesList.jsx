@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaSearch } from 'react-icons/fa';
+import { BsFillCalendarDateFill } from 'react-icons/bs';
+import { useMediaQuery } from 'react-responsive';
 
 import WORLD_MAP from '../assets/img/world-map.png';
 import getCurrentDate from '../utils/currentDate';
@@ -13,18 +15,25 @@ import {
   clearCountriesPerPage
 } from '../store/covidStats';
 import Country from './Country';
-import CustomDatePicker from './CustomDatePicker';
+import DatePickerModal from './DatePickerModal';
 
 const CountriesList = () => {
   const [countrName, setCountryName] = useState('');
   const [searchInputStatus, setSearchInputStatus] = useState(false);
+  const [datePickerModalShow, setDatePickerModalShow] = React.useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const pageSize = 8;
   const currentDate = getCurrentDate();
   const dispatch = useDispatch();
   const observer = useRef();
-  const { casesByCountry, totalCases, filteredCountries, countriesPerPage } = useSelector((state) => state);
-  let alternatingBackgroundColor = 'default_color';
+  const {
+    casesByCountry,
+    totalCases,
+    filteredCountries,
+    countriesPerPage 
+  } = useSelector((state) => state);
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  let alternatingBackgroundColor = 'default_color'; 
   
   useEffect(() => {
     if (Object.keys(casesByCountry).length === 0) dispatch(fetchCovidStats({ date: currentDate }));
@@ -83,12 +92,18 @@ const CountriesList = () => {
           <FaChevronLeft />
           <span>{totalCases.date}</span>
         </div>
-        <span>All Stats</span>
+        { !searchInputStatus && <span>All Stats</span> }
         <div className="pick_date">
-          { !searchInputStatus &&
-            <CustomDatePicker />
+          { !searchInputStatus && 
+            <button onClick={() => setDatePickerModalShow(true)}>
+              <BsFillCalendarDateFill />
+            </button>
           }
           <form>
+            <DatePickerModal
+              show={datePickerModalShow}
+              onHide={() => setDatePickerModalShow(false)}
+            />
             { searchInputStatus &&
               <input 
                 type="text"
@@ -147,11 +162,27 @@ const CountriesList = () => {
         {
           countriesPerPage.map(
             (country, idx) => {
-              if ((idx + 1) % 2 === 0) {
-                if (alternatingBackgroundColor === 'default_color') {
-                  alternatingBackgroundColor = 'other_color';
+              if (isMobile) {
+                if ((idx + 1) % 2 === 0) {
+                  if (alternatingBackgroundColor === 'default_color') {
+                    alternatingBackgroundColor = 'other_color';
+                  } else {
+                    alternatingBackgroundColor = 'default_color';
+                  }
+                }
+              } else {
+                if ((idx) % 4 === 0) {
+                  if (alternatingBackgroundColor === 'default_color') {
+                    alternatingBackgroundColor = 'default_color';
+                  } else {
+                    alternatingBackgroundColor = 'other_color';
+                  }
                 } else {
-                  alternatingBackgroundColor = 'default_color';
+                  if (alternatingBackgroundColor === 'default_color') {
+                    alternatingBackgroundColor = 'other_color';
+                  } else {
+                    alternatingBackgroundColor = 'default_color';
+                  }
                 }
               }
               return (

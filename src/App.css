@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #4369b2;
-  padding: 0 0.5rem;
+  padding: 0 2rem;
   color: #fff;
 }
 
@@ -27,21 +27,36 @@
   justify-content: flex-end;
 }
 
-.countries_list_header .pick_date button {
+.react-datepicker-wrapper {
+  align-self: stretch;
+}
+
+.react-datepicker__input-container {
+  height: 100%;
+  align-self: stretch;
+}
+
+.react-datepicker__input-container input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.1rem;
+  width: 100%;
+}
+
+.countries_list_header .pick_date #countryName {
+  width: 70%;
+}
+
+.react-datepicker__input-container button {
+  color: #fff;
   font-size: 1.5em;
   padding: 0 0.2em;
   margin: 0;
   vertical-align: middle;
 }
 
-.countries_list_header .pick_date form input {
-  font-size: 0.8rem;
-  width: 70%;
-}
-
-.react-datepicker__input-container {
-  text-align: right;
-  padding-top: 0.35em;
+.countries_list_header .pick_date button {
+  font-size: 1.5em;
 }
 
 .countries_list_hero {
@@ -50,7 +65,7 @@
   justify-content: space-between;
   gap: 0.5em;
   color: #fff;
-  padding: 0.3rem;
+  padding: 0.3rem 2rem;
 }
 
 .countries_list_hero img {
@@ -67,6 +82,8 @@
 .countries_list_hero .hero_text h1 {
   padding: 0.1em 0;
   margin: 0;
+  font-family: 'Bevan Regular', 'Times New Roman', Times, serif;
+  font-weight: 700;
   font-size: 1.5em;
   line-height: 1;
   text-transform: uppercase;
@@ -79,10 +96,11 @@
   font-weight: 600;
   font-size: 0.85em;
   color: #fff;
-  padding: 0.2em 0.4em;
+  padding: 0.2em 1em;
 }
 
 .all_stats_detail {
+  padding: 0.2em 1em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,7 +125,7 @@
 }
 
 .countries_list {
-  padding: 0;
+  padding: 0 1rem;
   margin: 0;
   list-style: none;
   display: flex;
@@ -117,6 +135,9 @@
 }
 
 .countries_list li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 0.5em;
   height: 100%;
 }
@@ -266,4 +287,34 @@
 
 .country_detail_stats li:nth-child(even) {
   background-color: #3d60a2;
+}
+
+@media screen and (min-width: 760px) {
+  .countries_list_hero {
+    gap: 3.5rem;
+  }
+
+  .countries_list_hero .hero_text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+  }
+
+  .all_stats_detail span {
+    width: 25%;
+  }
+
+  .all_stats_detail span b {
+    font-size: 1.5em;
+    color: #ddd;
+  }
+
+  .countries_list_hero .hero_text span {
+    font-size: 1.8rem;
+    letter-spacing: 0;
+  }
+
+  .countries_list a {
+    width: 25%;
+  }
 }
