@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { BsCalendarDate } from 'react-icons/bs';
+import { MdUpdate } from 'react-icons/md';
+import Button from 'react-bootstrap/Button';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,7 +20,7 @@ const CustomDatePicker = () => {
   };
   return (
     <form onSubmit={onFormSubmit}>
-      <div className="d-flex justify-content-around form-group">
+      <div className="d-flex form-group">
         <DatePicker
           selected={startDate}
           onChange={handleChange}
@@ -27,9 +28,9 @@ const CustomDatePicker = () => {
           dateFormat="yyyy-MM-dd"
           maxDate={new Date()}
         />
-        <button type="submit">
-          <BsCalendarDate />
-        </button>
+        <Button variant="outline-primary" type="submit">
+          <MdUpdate />
+        </Button>
       </div>
     </form>
   );

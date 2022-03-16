@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Bevan Regular';
+  src: local('Bevan Regular'), url('./assets//fonts/bevan/bevan.regular.ttf') format('ttf');
+}
+
 html {
   box-sizing: border-box;
 }

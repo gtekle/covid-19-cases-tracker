@@ -10,6 +10,7 @@ import RegionDetails from './components/RegionDetails';
 
 function App() {
   const { casesByCountry } = useSelector((state) => state);
+  const regex = /[*]/i;
   return (
     <Routes>
       <Route path="/" element={<CountriesList />} />
@@ -18,7 +19,7 @@ function App() {
           (country) => (
             <Route
               key={country}
-              path={`/${country}`}
+              path={`/${country.replace(regex, '')}`}
               element={
                 casesByCountry[country].regions.length === 0
                   ? <CountryDetails country={casesByCountry[country]} />

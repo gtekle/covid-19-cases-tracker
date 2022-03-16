@@ -3,6 +3,8 @@ import axios from 'axios';
 const BASE_URL = 'https://api.covid19tracking.narrativa.com/api/';
 const FETCH_SUCCESS = 'covidStats/covidStatsFetched';
 const FILTER_BY_COUNTRY_NAME = 'covidStats/filteredByCountryName';
+const FILTER_BY_PAGE_NUMBER = 'covidStats/filteredByPageNumber';
+const CLEAER_COUNTRIES_PER_PAGE = 'covidStats/clearedCountriesPerPage';
 const FETCH_FAIL = 'covidStats/covidStatsFetchFailed';
 
 export const fetchCovidStats = (param) => async (dispatch) => {
@@ -35,9 +37,20 @@ export const filterCountriesByName = (payload) => ({
   payload,
 });
 
+export const filterCountriesByPageNumber = (payload) => ({
+  type: FILTER_BY_PAGE_NUMBER,
+  payload,
+});
+
+export const clearCountriesPerPage = () => ({
+  type: CLEAER_COUNTRIES_PER_PAGE,
+  payload: [],
+})
+
 const initialState = {
   casesByCountry: {},
   filteredCountries: [],
+  countriesPerPage: [],
   totalCases: {},
 };
 
@@ -50,7 +63,6 @@ const covidStatsReducer = (state = initialState, action) => {
         totalCases: action.payload.totalCases,
       };
     case FILTER_BY_COUNTRY_NAME:
-      console.log(action.payload.casesByCountry);
       return {
         ...state,
         filteredCountries: [ ...Object.keys(action.payload.casesByCountry).filter(
@@ -58,6 +70,23 @@ const covidStatsReducer = (state = initialState, action) => {
           )
         ],
       };
+    case FILTER_BY_PAGE_NUMBER:
+      const indexOfFirstElement = action.payload.pageNumber*action.payload.pageSize;
+      return {
+        ...state,
+        countriesPerPage: [
+          ...state.countriesPerPage,
+          ...state.filteredCountries.slice(
+            indexOfFirstElement,
+            indexOfFirstElement + action.payload.pageSize
+          ),
+        ]
+      };
+    case CLEAER_COUNTRIES_PER_PAGE:
+      return {
+        ...state,
+        countriesPerPage: action.payload
+      }
     case FETCH_FAIL:
       return initialState;
     default:
