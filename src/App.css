@@ -267,3 +267,9 @@
 .country_detail_stats li:nth-child(even) {
   background-color: #3d60a2;
 }
+
+@media screen and (min-width: 760px) {
+  .countries_list a {
+    width: 25%;
+  }
+}

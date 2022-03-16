@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaSearch } from 'react-icons/fa';
+import { useMediaQuery } from 'react-responsive';
 
 import WORLD_MAP from '../assets/img/world-map.png';
 import getCurrentDate from '../utils/currentDate';
@@ -24,7 +25,8 @@ const CountriesList = () => {
   const dispatch = useDispatch();
   const observer = useRef();
   const { casesByCountry, totalCases, filteredCountries, countriesPerPage } = useSelector((state) => state);
-  let alternatingBackgroundColor = 'default_color';
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  let alternatingBackgroundColor = 'default_color'; 
   
   useEffect(() => {
     if (Object.keys(casesByCountry).length === 0) dispatch(fetchCovidStats({ date: currentDate }));
@@ -147,11 +149,27 @@ const CountriesList = () => {
         {
           countriesPerPage.map(
             (country, idx) => {
-              if ((idx + 1) % 2 === 0) {
-                if (alternatingBackgroundColor === 'default_color') {
-                  alternatingBackgroundColor = 'other_color';
+              if (isMobile) {
+                if ((idx + 1) % 2 === 0) {
+                  if (alternatingBackgroundColor === 'default_color') {
+                    alternatingBackgroundColor = 'other_color';
+                  } else {
+                    alternatingBackgroundColor = 'default_color';
+                  }
+                }
+              } else {
+                if ((idx) % 4 === 0) {
+                  if (alternatingBackgroundColor === 'default_color') {
+                    alternatingBackgroundColor = 'default_color';
+                  } else {
+                    alternatingBackgroundColor = 'other_color';
+                  }
                 } else {
-                  alternatingBackgroundColor = 'default_color';
+                  if (alternatingBackgroundColor === 'default_color') {
+                    alternatingBackgroundColor = 'other_color';
+                  } else {
+                    alternatingBackgroundColor = 'default_color';
+                  }
                 }
               }
               return (
