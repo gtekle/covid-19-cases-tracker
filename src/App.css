@@ -67,6 +67,8 @@
 .countries_list_hero .hero_text h1 {
   padding: 0.1em 0;
   margin: 0;
+  font-family: 'Bevan Regular', 'Times New Roman', Times, serif;
+  font-weight: 700;
   font-size: 1.5em;
   line-height: 1;
   text-transform: uppercase;
@@ -269,6 +271,30 @@
 }
 
 @media screen and (min-width: 760px) {
+  .countries_list_hero {
+    gap: 5rem;
+  }
+
+  .countries_list_hero .hero_text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+  }
+
+  .all_stats_detail span {
+    width: 25%;
+  }
+
+  .all_stats_detail span b {
+    font-size: 1.5em;
+    color: #ddd;
+  }
+
+  .countries_list_hero .hero_text span {
+    font-size: 1.8rem;
+    letter-spacing: 0;
+  }
+
   .countries_list a {
     width: 25%;
   }
