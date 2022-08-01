@@ -11,7 +11,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<CountriesList />} />
-      <Route path="/:country" element={ <CountryDetails country={casesByCountry[0]} /> } />
+      <Route path="/:country" element={<CountryDetails country={casesByCountry[0]} />} />
     </Routes>
   );
 }
