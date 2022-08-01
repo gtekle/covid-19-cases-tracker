@@ -21,8 +21,8 @@ const Country = ({ country }) => {
 
 Country.propTypes = {
   country: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    today_confirmed: PropTypes.number.isRequired,
+    country: PropTypes.string.isRequired,
+    cases: PropTypes.number.isRequired,
   }).isRequired,
 };
 
