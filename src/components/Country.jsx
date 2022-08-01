@@ -4,16 +4,16 @@ import { BsArrowRightCircle } from 'react-icons/bs';
 import getCounryMapUrl from '../utils/countryMapURL';
 
 const Country = ({ country }) => {
-  const imageUrl = getCounryMapUrl(country.name, 128);
+  const imageUrl = getCounryMapUrl(country.country, 128);
   return (
     <li>
       <div className="country_img">
-        <img src={imageUrl} alt={`${country.name} map`} />
+        <img src={imageUrl} alt={`${country.country} map`} />
         <BsArrowRightCircle />
       </div>
       <div className="country_detail">
-        <p>{country.name}</p>
-        <p>{country.today_confirmed.toLocaleString('en-US')}</p>
+        <p>{country.country}</p>
+        <p>{country.cases.toLocaleString('en-US')}</p>
       </div>
     </li>
   );
