@@ -135,22 +135,22 @@ const CountriesList = () => {
       </div>
       <div className="all_stats_detail">
         <span>
-          <b>{totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}</b>
+          <b>{totalCases.cases && totalCases.cases.toLocaleString('en-US')}</b>
           <br />
           Confirmed
         </span>
         <span>
-          <b>{totalCases.today_deaths && totalCases.today_deaths.toLocaleString('en-US')}</b>
+          <b>{totalCases.deaths && totalCases.deaths.toLocaleString('en-US')}</b>
           <br />
           Deaths
         </span>
         <span>
-          <b>{totalCases.today_recovered && totalCases.today_recovered.toLocaleString('en-US')}</b>
+          <b>{totalCases.recovered && totalCases.recovered.toLocaleString('en-US')}</b>
           <br />
           Recovered
         </span>
         <span>
-          <b>{totalCases.today_open_cases && totalCases.today_open_cases.toLocaleString('en-US')}</b>
+          <b>{totalCases.active && totalCases.active.toLocaleString('en-US')}</b>
           <br />
           Open Cases
         </span>
