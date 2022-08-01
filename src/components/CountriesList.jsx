@@ -6,7 +6,6 @@ import { BsFillCalendarDateFill } from 'react-icons/bs';
 import { useMediaQuery } from 'react-responsive';
 
 import WORLD_MAP from '../assets/img/world-map.png';
-import getCurrentDate from '../utils/currentDate';
 
 import {
   fetchCovidStats,
@@ -18,12 +17,11 @@ import Country from './Country';
 import DatePickerModal from './DatePickerModal';
 
 const CountriesList = () => {
-  const [countrName, setCountryName] = useState('');
+  const [countryName, setCountryName] = useState('');
   const [searchInputStatus, setSearchInputStatus] = useState(false);
   const [datePickerModalShow, setDatePickerModalShow] = React.useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const pageSize = 8;
-  const currentDate = getCurrentDate();
   const dispatch = useDispatch();
   const observer = useRef();
   const {
@@ -36,18 +34,18 @@ const CountriesList = () => {
   let alternatingBackgroundColor = 'default_color'; 
   
   useEffect(() => {
-    if (Object.keys(casesByCountry).length === 0) dispatch(fetchCovidStats({ date: currentDate }));
+    if (casesByCountry.length === 0) dispatch(fetchCovidStats());
   }, []);
   
   useEffect(() => {
     if (casesByCountry) {
       dispatch(clearCountriesPerPage());
-      dispatch(filterCountriesByName({countryName: countrName, casesByCountry}));
+      dispatch(filterCountriesByName({countryName: countryName, casesByCountry}));
     }
     
     if (filteredCountries) dispatch(filterCountriesByPageNumber({pageNumber, pageSize}));
 
-  }, [casesByCountry, countrName]);
+  }, [casesByCountry, countryName]);
   
   useEffect(() => {
     const totalPages = Math.floor(filteredCountries.length / pageSize);
@@ -84,7 +82,6 @@ const CountriesList = () => {
     setSearchInputStatus(false);
   }
 
-  const regex = /[*]/i;
   return (
     <div className="countries_list_container">
       <div className="countries_list_header">
@@ -108,7 +105,7 @@ const CountriesList = () => {
               <input 
                 type="text"
                 name="countryName"
-                value={countrName}
+                value={countryName}
                 id="countryName"
                 onChange={ handleChange }
                 onBlur={handleOnSearchInputBlur}
@@ -125,7 +122,7 @@ const CountriesList = () => {
         <img src={WORLD_MAP} alt="world map" />
         <div className="hero_text">
           <h1>Global</h1>
-          <span>{totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}</span>
+          <span>{totalCases.cases && totalCases.cases.toLocaleString('en-US')}</span>
           <br />
           <span>cases</span>
         </div>
@@ -135,22 +132,22 @@ const CountriesList = () => {
       </div>
       <div className="all_stats_detail">
         <span>
-          <b>{totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}</b>
+          <b>{totalCases.cases && totalCases.cases.toLocaleString('en-US')}</b>
           <br />
           Confirmed
         </span>
         <span>
-          <b>{totalCases.today_deaths && totalCases.today_deaths.toLocaleString('en-US')}</b>
+          <b>{totalCases.deaths && totalCases.deaths.toLocaleString('en-US')}</b>
           <br />
           Deaths
         </span>
         <span>
-          <b>{totalCases.today_recovered && totalCases.today_recovered.toLocaleString('en-US')}</b>
+          <b>{totalCases.recovered && totalCases.recovered.toLocaleString('en-US')}</b>
           <br />
           Recovered
         </span>
         <span>
-          <b>{totalCases.today_open_cases && totalCases.today_open_cases.toLocaleString('en-US')}</b>
+          <b>{totalCases.active && totalCases.active.toLocaleString('en-US')}</b>
           <br />
           Open Cases
         </span>
@@ -188,13 +185,13 @@ const CountriesList = () => {
               return (
                 countriesPerPage.length === idx + 1
                 ? (
-                    <Link ref={lastCountryElementRef} key={country.replace(regex, '')} data-testid={`${country.id}-testId`} to={`/${country.replace(regex, '')}`} className={alternatingBackgroundColor}>
-                      <Country country={casesByCountry[country]} />
+                    <Link ref={lastCountryElementRef} key={idx} data-testid={`${idx}-testId`} to={country.country} className={alternatingBackgroundColor}>
+                      <Country country={casesByCountry[idx]} />
                     </Link>
                   ) 
                 : (
-                    <Link key={country} data-testid={`${country.id}-testId`} to={`/${country}`} className={alternatingBackgroundColor}>
-                      <Country country={casesByCountry[country]} />
+                    <Link key={idx} data-testid={`${idx}-testId`} to={country.country} className={alternatingBackgroundColor}>
+                      <Country country={casesByCountry[idx]} />
                     </Link>
                   )
               );

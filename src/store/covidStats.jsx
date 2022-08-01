@@ -1,19 +1,21 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://api.covid19tracking.narrativa.com/api/';
+const BASE_URL = 'https://disease.sh/v3/covid-19';
 const FETCH_SUCCESS = 'covidStats/covidStatsFetched';
 const FILTER_BY_COUNTRY_NAME = 'covidStats/filteredByCountryName';
 const FILTER_BY_PAGE_NUMBER = 'covidStats/filteredByPageNumber';
 const CLEAER_COUNTRIES_PER_PAGE = 'covidStats/clearedCountriesPerPage';
 const FETCH_FAIL = 'covidStats/covidStatsFetchFailed';
 
-export const fetchCovidStats = (param) => async (dispatch) => {
+export const fetchCovidStats = () => async (dispatch) => {
   let res;
   try {
-    const { data } = await axios.get(`${BASE_URL}/${param.date}`);
-    res = data;
-    const casesByCountry = data.dates[param.date].countries;
-    const totalCases = data.total;
+    const casesByCountryList = await axios.get(`${BASE_URL}/countries`);
+    const globalTotals = await axios.get(`${BASE_URL}/all`);
+
+    res = casesByCountryList.data;
+    const casesByCountry = casesByCountryList.data;
+    const totalCases = globalTotals.data;
     dispatch({
       type: FETCH_SUCCESS,
       payload: {
@@ -48,7 +50,7 @@ export const clearCountriesPerPage = () => ({
 })
 
 const initialState = {
-  casesByCountry: {},
+  casesByCountry: [],
   filteredCountries: [],
   countriesPerPage: [],
   totalCases: {},
@@ -65,8 +67,8 @@ const covidStatsReducer = (state = initialState, action) => {
     case FILTER_BY_COUNTRY_NAME:
       return {
         ...state,
-        filteredCountries: [ ...Object.keys(action.payload.casesByCountry).filter(
-          (country) => country.toLowerCase().startsWith(action.payload.countryName.toLowerCase())
+        filteredCountries: [ ...action.payload.casesByCountry.filter(
+          (country) => country.country.toLowerCase().startsWith(action.payload.countryName.toLowerCase())
           )
         ],
       };
