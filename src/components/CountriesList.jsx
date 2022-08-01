@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaChevronLeft, FaSearch } from 'react-icons/fa';
 import { BsFillCalendarDateFill } from 'react-icons/bs';
 import { useMediaQuery } from 'react-responsive';
@@ -18,7 +18,7 @@ import Country from './Country';
 import DatePickerModal from './DatePickerModal';
 
 const CountriesList = () => {
-  const [countrName, setCountryName] = useState('');
+  const [countryName, setCountryName] = useState('');
   const [searchInputStatus, setSearchInputStatus] = useState(false);
   const [datePickerModalShow, setDatePickerModalShow] = React.useState(false);
   const [pageNumber, setPageNumber] = useState(0);
@@ -26,6 +26,7 @@ const CountriesList = () => {
   const currentDate = getCurrentDate();
   const dispatch = useDispatch();
   const observer = useRef();
+  const { countryId } = useParams();
   const {
     casesByCountry,
     totalCases,
@@ -36,18 +37,18 @@ const CountriesList = () => {
   let alternatingBackgroundColor = 'default_color'; 
   
   useEffect(() => {
-    if (Object.keys(casesByCountry).length === 0) dispatch(fetchCovidStats({ date: currentDate }));
+    if (casesByCountry.length === 0) dispatch(fetchCovidStats());
   }, []);
   
   useEffect(() => {
     if (casesByCountry) {
       dispatch(clearCountriesPerPage());
-      dispatch(filterCountriesByName({countryName: countrName, casesByCountry}));
+      dispatch(filterCountriesByName({countryName: countryName, casesByCountry}));
     }
     
     if (filteredCountries) dispatch(filterCountriesByPageNumber({pageNumber, pageSize}));
 
-  }, [casesByCountry, countrName]);
+  }, [casesByCountry, countryName]);
   
   useEffect(() => {
     const totalPages = Math.floor(filteredCountries.length / pageSize);
@@ -84,7 +85,6 @@ const CountriesList = () => {
     setSearchInputStatus(false);
   }
 
-  const regex = /[*]/i;
   return (
     <div className="countries_list_container">
       <div className="countries_list_header">
@@ -108,7 +108,7 @@ const CountriesList = () => {
               <input 
                 type="text"
                 name="countryName"
-                value={countrName}
+                value={countryName}
                 id="countryName"
                 onChange={ handleChange }
                 onBlur={handleOnSearchInputBlur}
@@ -188,13 +188,13 @@ const CountriesList = () => {
               return (
                 countriesPerPage.length === idx + 1
                 ? (
-                    <Link ref={lastCountryElementRef} key={country.replace(regex, '')} data-testid={`${country.id}-testId`} to={`/${country.replace(regex, '')}`} className={alternatingBackgroundColor}>
-                      <Country country={casesByCountry[country]} />
+                    <Link ref={lastCountryElementRef} key={idx} data-testid={`${idx}-testId`} to={country.country} className={alternatingBackgroundColor}>
+                      <Country country={casesByCountry[idx]} />
                     </Link>
                   ) 
                 : (
-                    <Link key={country} data-testid={`${country.id}-testId`} to={`/${country}`} className={alternatingBackgroundColor}>
-                      <Country country={casesByCountry[country]} />
+                    <Link key={idx} data-testid={`${idx}-testId`} to={country.country} className={alternatingBackgroundColor}>
+                      <Country country={casesByCountry[idx]} />
                     </Link>
                   )
               );

@@ -68,7 +68,7 @@ const covidStatsReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredCountries: [ ...action.payload.casesByCountry.filter(
-          (country) => country.toLowerCase().startsWith(action.payload.countryName.toLowerCase())
+          (country) => country.country.toLowerCase().startsWith(action.payload.countryName.toLowerCase())
           )
         ],
       };
