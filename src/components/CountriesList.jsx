@@ -125,7 +125,7 @@ const CountriesList = () => {
         <img src={WORLD_MAP} alt="world map" />
         <div className="hero_text">
           <h1>Global</h1>
-          <span>{totalCases.today_confirmed && totalCases.today_confirmed.toLocaleString('en-US')}</span>
+          <span>{totalCases.cases && totalCases.cases.toLocaleString('en-US')}</span>
           <br />
           <span>cases</span>
         </div>

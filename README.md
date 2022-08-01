@@ -2,7 +2,7 @@
 
 # Covid-19 Cases Tracker
 
-> This web app helps you get latest covid-19 global and by country statistical data by fetching live data from a public API provided by Narrativa that collects information from different data sources to provide comprehensive data for the novel coronavirus, SARS-CoV-2 (Covid-19).
+> This web app helps you get latest covid-19 global and by country statistical data by fetching live data from a public API provided by [Open Disease Data API](https://disease.sh/) that collects information from different data sources to provide comprehensive data for the novel coronavirus, SARS-CoV-2 (Covid-19).
 
 ![](./src/assets/img/demo.gif)
 
@@ -50,7 +50,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- I would like to acknowledge [Narrativa](https://covid19tracking.narrativa.com/index_en.html) for Coronavirus Data API in their Covid-19 Tracking Project API from which all uptodate covid-19 stats are fetched.
+- I would like to acknowledge [Open Disease Data API](https://disease.sh/) for a free Open API from which all uptodate covid-19 stats are fetched.
 - I would also like to extend my gratitude to [Nelson Sakwa on Behance](https://www.behance.net/sakwadesignstudio) for the original design idea.
 
 ## 📝 License
