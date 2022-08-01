@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaSearch } from 'react-icons/fa';
 import { BsFillCalendarDateFill } from 'react-icons/bs';
 import { useMediaQuery } from 'react-responsive';
 
 import WORLD_MAP from '../assets/img/world-map.png';
-import getCurrentDate from '../utils/currentDate';
 
 import {
   fetchCovidStats,
@@ -23,10 +22,8 @@ const CountriesList = () => {
   const [datePickerModalShow, setDatePickerModalShow] = React.useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const pageSize = 8;
-  const currentDate = getCurrentDate();
   const dispatch = useDispatch();
   const observer = useRef();
-  const { countryId } = useParams();
   const {
     casesByCountry,
     totalCases,
